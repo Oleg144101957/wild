@@ -1,9 +1,6 @@
 package com.vishnevskiypro.wild.domain
 
-class OnePlayerGame(val player: String) {
-
-
-
+class OnePlayerGame() {
 
     fun playResult(playerChoice: String, computerChoice: String) =
         when{
@@ -21,7 +18,7 @@ class OnePlayerGame(val player: String) {
     companion object{
         val listForComputer = listOf("paper", "scissors", "stone")
 
-        private fun computerRandom(): String{
+        fun computerRandom(): String{
             val randomNumber = (0..2).random()
             return listForComputer[randomNumber]
         }

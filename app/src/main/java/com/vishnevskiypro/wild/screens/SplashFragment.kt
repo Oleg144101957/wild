@@ -20,8 +20,6 @@ import kotlinx.coroutines.*
 class SplashFragment : Fragment() {
 
     private lateinit var binding: FragmentSplashBinding
-    private val sharedPreferences by lazy { requireActivity().applicationContext.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE) }
-
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 

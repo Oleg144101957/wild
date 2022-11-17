@@ -21,11 +21,7 @@
         android:id="@+id/gameFragment"
         android:name="com.vishnevskiypro.wild.screens.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" >
-        <action
-            android:id="@+id/action_gameFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_game" />
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.vishnevskiypro.wild.screens.MenuFragment"
