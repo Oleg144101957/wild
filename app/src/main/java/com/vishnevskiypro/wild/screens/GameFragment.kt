@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vishnevskiypro.wild.R
+import com.vishnevskiypro.wild.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
+
+    private lateinit var binding: FragmentGameBinding
 
 
     override fun onCreateView(

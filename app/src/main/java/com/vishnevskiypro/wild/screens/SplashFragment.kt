@@ -24,6 +24,7 @@ class SplashFragment : Fragment() {
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

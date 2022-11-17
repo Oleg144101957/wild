@@ -2,6 +2,7 @@ package com.vishnevskiypro.wild.screens
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.vishnevskiypro.wild.MyWebViewClient
 import com.vishnevskiypro.wild.databinding.FragmentWebBinding
 
 class WebFragment : Fragment() {
+
 
     private lateinit var binding: FragmentWebBinding
     private lateinit var webView: WebView
@@ -50,6 +52,8 @@ class WebFragment : Fragment() {
         val database = Firebase.database
         val myRef = database.getReference("message")
         myRef.setValue(urlToSave)
+
+
     }
 
 }
