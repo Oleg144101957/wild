@@ -52,7 +52,6 @@ class SplashFragment : Fragment() {
                             binding.progressBar.isVisible = false
                             if (gamePass){
                                 findNavController().navigate(R.id.action_splashFragment_to_menuFragment)
-
                             } else {
                                 findNavController().navigate(R.id.action_splashFragment_to_webFragment)
                             }

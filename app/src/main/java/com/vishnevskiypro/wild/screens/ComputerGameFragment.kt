@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 import com.vishnevskiypro.wild.R
 import com.vishnevskiypro.wild.databinding.FragmentComputerGameBinding
@@ -28,14 +30,43 @@ class ComputerGameFragment : Fragment() {
 
         binding.playerPaper.setOnClickListener {
             play("paper")
+            binding.playerScissors.startAnimation(AnimationUtils.loadAnimation(
+                requireActivity(),
+                R.anim.hands
+            ))
+
+            binding.playerStone.startAnimation(AnimationUtils.loadAnimation(
+                requireActivity(),
+                R.anim.hands
+            ))
         }
 
         binding.playerScissors.setOnClickListener {
             play("scissors")
+
+            binding.playerPaper.startAnimation(AnimationUtils.loadAnimation(
+                requireActivity(),
+                R.anim.hands
+            ))
+
+            binding.playerStone.startAnimation(AnimationUtils.loadAnimation(
+                requireActivity(),
+                R.anim.hands
+            ))
         }
 
         binding.playerStone.setOnClickListener {
             play("stone")
+
+            binding.playerPaper.startAnimation(AnimationUtils.loadAnimation(
+                requireActivity(),
+                R.anim.hands
+            ))
+
+            binding.playerScissors.startAnimation(AnimationUtils.loadAnimation(
+                requireActivity(),
+                R.anim.hands
+            ))
         }
 
         binding.tvResult.setOnClickListener {
@@ -56,20 +87,14 @@ class ComputerGameFragment : Fragment() {
         when(result){
             "Player Win" -> {
                 saveResult("Player Win")
-                binding.playerLayout.setBackgroundColor(Color.BLUE)
-                binding.computerLayout.setBackgroundColor(Color.RED)
             }
 
             "Computer Win" -> {
                 saveResult("Computer Win")
-                binding.playerLayout.setBackgroundColor(Color.RED)
-                binding.computerLayout.setBackgroundColor(Color.BLUE)
             }
 
             else -> {
                 saveResult("Draw")
-                binding.playerLayout.setBackgroundColor(Color.GRAY)
-                binding.computerLayout.setBackgroundColor(Color.GRAY)
             }
         }
     }
@@ -90,7 +115,4 @@ class ComputerGameFragment : Fragment() {
         }
     }
 
-    private fun hideNotUsed(player: String, computer: String){
-
-    }
 }
