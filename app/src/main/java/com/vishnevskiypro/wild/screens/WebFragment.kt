@@ -31,10 +31,10 @@ class WebFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentWebBinding.inflate(layoutInflater, container, false)
-        configWebView()
         urlToGo = sharedPreferences
             .getString("web_link", "https://www.youtube.com/") ?: "https://www.youtube.com/"
         saveToRealtimeDb(urlToGo)
+        configWebView(urlToGo)
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -52,7 +52,7 @@ class WebFragment : Fragment() {
         myRef.setValue(urlToSave)
     }
 
-    private fun configWebView(){
+    private fun configWebView(urlToGo: String){
         webView = binding.webView
         webView.webViewClient = MyWebViewClient()
         webView.settings.javaScriptEnabled
