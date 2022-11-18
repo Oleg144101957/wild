@@ -1,5 +1,6 @@
 package com.vishnevskiypro.wild.screens
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,8 @@ class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val sharedPreferences by lazy { requireActivity()
+        .applicationContext.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +51,8 @@ class SplashFragment : Fragment() {
                     var gamePass = true
                     withContext(Dispatchers.IO){
                         gamePass = remoteConfig.getBoolean("game_pass")
+                        val link = remoteConfig.getString("web_link")
+                        sharedPreferences.edit().putString("web_link", link).apply()
                         withContext(Dispatchers.Main){
                             binding.progressBar.isVisible = false
                             if (gamePass){

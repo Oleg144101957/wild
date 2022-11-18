@@ -27,7 +27,49 @@ class ComputerGameFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentComputerGameBinding.inflate(layoutInflater, container, false)
+        setListeners()
 
+        return binding.root
+    }
+
+    private fun play(playerChoice: String){
+        val onePlayerGame = OnePlayerGame()
+        val compChoice = OnePlayerGame.computerRandom()
+        val result = onePlayerGame.playResult(playerChoice, compChoice)
+        binding.tvResult.text = result
+
+        when(result){
+            "Player Win" -> {
+                saveResult("Player Win")
+            }
+
+            "Computer Win" -> {
+                saveResult("Computer Win")
+            }
+
+            else -> {
+                saveResult("Draw")
+            }
+        }
+    }
+
+    private fun saveResult(whoWin: String){
+        if (whoWin == "Player Win"){
+            var previousScore = sharedPreferences.getInt("Player_Win", 0)
+            previousScore++
+            sharedPreferences.edit().putInt("Player_Win", previousScore).apply()
+        } else if (whoWin == "Computer Win"){
+            var previousScore = sharedPreferences.getInt("Computer_Win", 0)
+            previousScore++
+            sharedPreferences.edit().putInt("Computer_Win", previousScore).apply()
+        } else {
+            var previousScore = sharedPreferences.getInt("Draw", 0)
+            previousScore++
+            sharedPreferences.edit().putInt("Draw", previousScore).apply()
+        }
+    }
+
+    private fun setListeners(){
         binding.playerPaper.setOnClickListener {
             play("paper")
             binding.playerScissors.startAnimation(AnimationUtils.loadAnimation(
@@ -74,45 +116,6 @@ class ComputerGameFragment : Fragment() {
                 R.id.action_computerGameFragment_to_resultFragment)
         }
 
-
-        return binding.root
-    }
-
-    private fun play(playerChoice: String){
-        val onePlayerGame = OnePlayerGame()
-        val compChoice = OnePlayerGame.computerRandom()
-        val result = onePlayerGame.playResult(playerChoice, compChoice)
-        binding.tvResult.text = result
-
-        when(result){
-            "Player Win" -> {
-                saveResult("Player Win")
-            }
-
-            "Computer Win" -> {
-                saveResult("Computer Win")
-            }
-
-            else -> {
-                saveResult("Draw")
-            }
-        }
-    }
-
-    private fun saveResult(whoWin: String){
-        if (whoWin == "Player Win"){
-            var previousScore = sharedPreferences.getInt("Player_Win", 0)
-            previousScore++
-            sharedPreferences.edit().putInt("Player_Win", previousScore).apply()
-        } else if (whoWin == "Computer Win"){
-            var previousScore = sharedPreferences.getInt("Computer_Win", 0)
-            previousScore++
-            sharedPreferences.edit().putInt("Computer_Win", previousScore).apply()
-        } else {
-            var previousScore = sharedPreferences.getInt("Draw", 0)
-            previousScore++
-            sharedPreferences.edit().putInt("Draw", previousScore).apply()
-        }
     }
 
 }

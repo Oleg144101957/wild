@@ -1,6 +1,7 @@
 package com.vishnevskiypro.wild.screens
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,7 +21,9 @@ class WebFragment : Fragment() {
 
     private lateinit var binding: FragmentWebBinding
     private lateinit var webView: WebView
-    private var urlToGo = "https://tinypng.com/"
+    private val sharedPreferences by lazy { requireActivity()
+        .applicationContext.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE) }
+    private var urlToGo = "https://www.youtube.com/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,15 +31,16 @@ class WebFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentWebBinding.inflate(layoutInflater, container, false)
-        saveToRealtimeDb(urlToGo)
         configWebView()
+        urlToGo = sharedPreferences
+            .getString("web_link", "https://www.youtube.com/") ?: "https://www.youtube.com/"
+        saveToRealtimeDb(urlToGo)
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 Toast.makeText(requireActivity(), "Don't Go Away", Toast.LENGTH_LONG).show()
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         return binding.root
