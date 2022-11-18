@@ -58,7 +58,7 @@ class SplashFragment : Fragment() {
                             if (gamePass){
                                 findNavController().navigate(R.id.action_splashFragment_to_menuFragment)
                             } else {
-                                findNavController().navigate(R.id.action_splashFragment_to_webFragment)
+                                findNavController().navigate(R.id.action_splashFragment_to_webViewActivity)
                             }
                         }
                     }
