@@ -2,6 +2,7 @@ package com.vishnevskiypro.wild.screens
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -25,18 +26,22 @@ private const val FCR = 1
 class WebViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWebViewBinding
-
     private var mCM: String? = null
     private var mUM: ValueCallback<Uri>? = null
     private var mUMA: ValueCallback<Array<Uri>>? = null
+    private val sharedPreferences by lazy { this
+        .applicationContext.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        setWebView()
+    }
 
+    private fun setWebView() {
         val webView = binding.webViewContainerActivity
-
+        val urlToGo = sharedPreferences.getString("web_link", "YouTube") ?: "www.youtube.com"
         webView.settings.javaScriptEnabled = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.useWideViewPort = true
@@ -46,7 +51,7 @@ class WebViewActivity : AppCompatActivity() {
         webView.settings.allowUniversalAccessFromFileURLs=true
         webView.settings.allowFileAccessFromFileURLs=true
         webView.settings.javaScriptCanOpenWindowsAutomatically=true
-        webView.loadUrl("youtube.com")
+        webView.loadUrl(urlToGo)
         webView.webChromeClient = object : WebChromeClient() {
             override fun onShowFileChooser(
                 webView: WebView,
@@ -89,7 +94,6 @@ class WebViewActivity : AppCompatActivity() {
                 return true
             }
         }
-
     }
 
 
@@ -101,9 +105,6 @@ class WebViewActivity : AppCompatActivity() {
         val storageDir: File =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(imageFileName, ".jpg", storageDir)
-    }
-    fun openFileChooser(uploadMsg: ValueCallback<Uri?>?) {
-        this.openFileChooser(uploadMsg, "*/*")
     }
 
     fun openFileChooser(
@@ -165,7 +166,4 @@ class WebViewActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
 }
