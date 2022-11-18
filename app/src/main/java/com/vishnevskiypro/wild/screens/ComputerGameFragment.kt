@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 import com.vishnevskiypro.wild.R
@@ -68,6 +70,7 @@ class ComputerGameFragment : Fragment() {
     }
 
     private fun setListeners(){
+
         binding.playerPaper.setOnClickListener {
             play("paper")
             binding.playerScissors.startAnimation(AnimationUtils.loadAnimation(

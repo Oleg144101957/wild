@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -55,10 +56,17 @@ class WebFragment : Fragment() {
     private fun configWebView(urlToGo: String){
         webView = binding.webView
         webView.webViewClient = MyWebViewClient()
+        webView.isFocusable = true
+        webView.isFocusableInTouchMode = true
         webView.settings.javaScriptEnabled
+        webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
+        webView.settings.domStorageEnabled = true
+        webView.settings.databaseEnabled = true
+        webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         webView.settings.domStorageEnabled
         webView.settings.allowFileAccess
         webView.loadUrl(urlToGo)
+
     }
 
 }
