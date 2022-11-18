@@ -27,19 +27,13 @@ class WebFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         binding = FragmentWebBinding.inflate(layoutInflater, container, false)
-        webView = binding.webView
-        webView.webViewClient = MyWebViewClient()
-        webView.settings.javaScriptEnabled
-        webView.settings.domStorageEnabled
-        webView.settings.allowFileAccess
-        webView.loadUrl(urlToGo)
         saveToRealtimeDb(urlToGo)
+        configWebView()
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                Toast.makeText(requireActivity(), "Back Pressed", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(), "Don't Go Away", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -52,8 +46,15 @@ class WebFragment : Fragment() {
         val database = Firebase.database
         val myRef = database.getReference("message")
         myRef.setValue(urlToSave)
+    }
 
-
+    private fun configWebView(){
+        webView = binding.webView
+        webView.webViewClient = MyWebViewClient()
+        webView.settings.javaScriptEnabled
+        webView.settings.domStorageEnabled
+        webView.settings.allowFileAccess
+        webView.loadUrl(urlToGo)
     }
 
 }

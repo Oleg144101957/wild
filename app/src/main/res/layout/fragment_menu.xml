@@ -19,14 +19,6 @@
         android:text="@string/play_with_computer" />
 
     <Button
-        android:id="@+id/btnTwoPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textAllCaps="false"
-        android:text="@string/two_players" />
-
-    <Button
         android:id="@+id/btnScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

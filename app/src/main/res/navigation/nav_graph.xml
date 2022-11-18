@@ -18,18 +18,10 @@
             app:destination="@id/menuFragment" />
     </fragment>
     <fragment
-        android:id="@+id/gameFragment"
-        android:name="com.vishnevskiypro.wild.screens.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
-    <fragment
         android:id="@+id/menuFragment"
         android:name="com.vishnevskiypro.wild.screens.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
-        <action
-            android:id="@+id/action_menuFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
         <action
             android:id="@+id/action_menuFragment_to_resultFragment"
             app:destination="@id/resultFragment" />

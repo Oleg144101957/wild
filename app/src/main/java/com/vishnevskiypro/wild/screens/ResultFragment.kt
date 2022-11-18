@@ -23,7 +23,6 @@ class ResultFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentResultBinding.inflate(layoutInflater, container, false)
-
         setReults()
 
         return binding.root

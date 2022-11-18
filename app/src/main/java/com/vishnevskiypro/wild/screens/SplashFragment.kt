@@ -1,6 +1,5 @@
 package com.vishnevskiypro.wild.screens
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,8 +22,6 @@ class SplashFragment : Fragment() {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +29,11 @@ class SplashFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(layoutInflater, container, false)
 
+        goToMainScreen()
+        return binding.root
+    }
+
+    private fun goToMainScreen(){
         uiScope.launch {
             withContext(Dispatchers.IO){
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -43,12 +45,12 @@ class SplashFragment : Fragment() {
                 uiScope.launch {
                     remoteConfig.fetchAndActivate()
                     Thread.sleep(3000)
-                    var gamePass = ""
+                    var gamePass = true
                     withContext(Dispatchers.IO){
-                        gamePass = remoteConfig.getString("game_pass")
+                        gamePass = remoteConfig.getBoolean("game_pass")
                         withContext(Dispatchers.Main){
                             binding.progressBar.isVisible = false
-                            if (gamePass == "true"){
+                            if (gamePass){
                                 findNavController().navigate(R.id.action_splashFragment_to_menuFragment)
 
                             } else {
@@ -59,9 +61,5 @@ class SplashFragment : Fragment() {
                 }
             }
         }
-
-        return binding.root
     }
-
-
 }

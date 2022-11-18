@@ -29,10 +29,6 @@ class MenuFragment : Fragment() {
             view.findNavController().navigate(R.id.action_menuFragment_to_computerGameFragment)
         }
 
-        binding.btnTwoPlayers.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_menuFragment_to_gameFragment)
-        }
-
         binding.btnScores.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_menuFragment_to_resultFragment)
         }

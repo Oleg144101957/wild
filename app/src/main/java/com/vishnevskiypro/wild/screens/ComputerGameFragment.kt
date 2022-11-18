@@ -88,6 +88,9 @@ class ComputerGameFragment : Fragment() {
             previousScore++
             sharedPreferences.edit().putInt("Draw", previousScore).apply()
         }
+    }
+
+    private fun hideNotUsed(player: String, computer: String){
 
     }
 }
