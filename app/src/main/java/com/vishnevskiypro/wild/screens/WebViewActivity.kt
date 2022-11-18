@@ -48,8 +48,6 @@ class WebViewActivity : AppCompatActivity() {
         webView.settings.domStorageEnabled = true
         webView.settings.allowFileAccess=true
         webView.settings.allowContentAccess=true
-        webView.settings.allowUniversalAccessFromFileURLs=true
-        webView.settings.allowFileAccessFromFileURLs=true
         webView.settings.javaScriptCanOpenWindowsAutomatically=true
         webView.loadUrl(urlToGo)
         webView.webChromeClient = object : WebChromeClient() {
