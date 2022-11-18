@@ -1,13 +1,11 @@
 package com.vishnevskiypro.wild.screens
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 import com.vishnevskiypro.wild.R
@@ -74,12 +72,12 @@ class ComputerGameFragment : Fragment() {
             play("paper")
             binding.playerScissors.startAnimation(AnimationUtils.loadAnimation(
                 requireActivity(),
-                R.anim.hands
+                R.anim.hands_out
             ))
 
             binding.playerStone.startAnimation(AnimationUtils.loadAnimation(
                 requireActivity(),
-                R.anim.hands
+                R.anim.hands_out
             ))
         }
 
@@ -88,12 +86,12 @@ class ComputerGameFragment : Fragment() {
 
             binding.playerPaper.startAnimation(AnimationUtils.loadAnimation(
                 requireActivity(),
-                R.anim.hands
+                R.anim.hands_out
             ))
 
             binding.playerStone.startAnimation(AnimationUtils.loadAnimation(
                 requireActivity(),
-                R.anim.hands
+                R.anim.hands_out
             ))
         }
 
@@ -102,12 +100,12 @@ class ComputerGameFragment : Fragment() {
 
             binding.playerPaper.startAnimation(AnimationUtils.loadAnimation(
                 requireActivity(),
-                R.anim.hands
+                R.anim.hands_out
             ))
 
             binding.playerScissors.startAnimation(AnimationUtils.loadAnimation(
                 requireActivity(),
-                R.anim.hands
+                R.anim.hands_out
             ))
         }
 
@@ -117,5 +115,4 @@ class ComputerGameFragment : Fragment() {
         }
 
     }
-
 }
